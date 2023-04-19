@@ -19,7 +19,7 @@ app.use(express.json())
 // routes
 
 app.get('', (req, res) => {
-    res.send('💁 Welcome to my Task-App 👋')
+    res.send('💁 Welcome to my Task-manager-app 📓')
 })
 app.use(userRouter); // user routes
 app.use(taskRouter); // task routes
