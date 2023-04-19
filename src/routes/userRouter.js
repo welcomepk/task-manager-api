@@ -119,7 +119,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({
     limits: {
-        fileSize: 3000000,
+        fileSize: 5000000,
     },
     fileFilter(req, file, cb) {
         if (!file.originalname.match(/\.(jpg|jpeg|png|svg)$/)) {
@@ -131,6 +131,7 @@ const upload = multer({
 })
 
 router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
+    console.log("in apload mathod");
     try {
         if (!req.file?.buffer) return res.status(400).send({ error: "plz select img for your avatar" })
         const buffer = await sharp(req.file.buffer).resize({ width: 400, height: 400 }).png().toBuffer()

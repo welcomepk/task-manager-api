@@ -78,10 +78,9 @@ userSchema.statics.findByCredentials = async function (email, password) {
 // hash the plain text password before saving
 userSchema.pre('save', function (next) {
     var user = this;
-    console.log("in upadate middleware");
+
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
-    console.log("hashing the password");
 
     // hash the password using new salt
     bcrypt.hash(user.password, 8, function (err, hash) {
@@ -97,7 +96,6 @@ userSchema.pre('save', function (next) {
 
 // delete all tasks before deleting the user
 userSchema.pre('remove', async function (next) {
-    console.log("In REMOVE MIDDLEWARW");
     const user = this;
     await Task.deleteMany({ owner: user._id })
     next();

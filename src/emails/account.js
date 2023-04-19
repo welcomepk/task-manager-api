@@ -20,7 +20,7 @@ function sendWelcomeEmail(email, name) {
         from: 'kamblepramod806@gmail.com', // Change to your verified sender
         subject: 'Thank for joining in!',
         text: `Welcome to the app, ${name}. Let me know how you get along with the app.`,
-        // html: '<strong>and easy to do anywhere, even with Node.js 😄 </strong>',
+        html: '<strong>and easy to do anywhere, even with Node.js 😄 </strong>',
     }
     sgMail.send(msg)
 }
