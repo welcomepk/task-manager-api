@@ -17,6 +17,14 @@ const router = Router();
 // GET /tasks?limit=4&skip=0
 // GET /tasks?sortBy=createdAt:desc || /tasks?sortBy=createdAt:asc
 
+router.get('/all-tasks', async (req, res) => {
+    try {
+        const tasks = await Task.find({})
+        return res.send(tasks)
+    } catch (error) {
+        res.status(500).send('something went wrong')
+    }
+})
 router.get('/tasks', auth, async (req, res) => {
     const match = {}
     const sort = {}
